@@ -19,7 +19,6 @@ func init() {
 	}
 }
 
-// Encrypt encrypts a string using RSA public key and returns it as a base64 string
 func Encrypt(data string) (string, error) {
 	encryptedBytes, err := rsa.EncryptOAEP(sha256.New(), rand.Reader, &privateKey.PublicKey, []byte(data), nil)
 	if err != nil {
@@ -28,7 +27,6 @@ func Encrypt(data string) (string, error) {
 	return base64.StdEncoding.EncodeToString(encryptedBytes), nil
 }
 
-// Decrypt decrypts a base64 string using RSA private key and returns the original string
 func Decrypt(data string) (string, error) {
 	decodedBytes, err := base64.StdEncoding.DecodeString(data)
 	if err != nil {
